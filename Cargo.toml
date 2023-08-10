@@ -1,16 +1,13 @@
 [package]
 name = "stardict_wrapper"
-version = "0.1.0"
-authors = ["Unit Mesh"]
-description = ""
-repository = ""
-categories = ["parsing"]
-keywords = [
-]
-license = "Apache-2.0"
 edition = "2021"
-include = [
-]
+description = "Rust implement stardict"
+authors = ["zang.loo"]
+homepage = "https://github.com/zangloo/stardict"
+repository = "https://github.com/zangloo/stardict.git"
+keywords = ["stardict"]
+license = "Apache-2.0"
+readme = "README.md"
 
 [dependencies]
 stardict_lib = { version = "0.1.11", features = ["sled"] }

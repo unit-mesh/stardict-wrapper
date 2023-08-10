@@ -15,21 +15,27 @@ impl WrapperDict {
 
     pub fn translate(&mut self, word: &str) -> Option<String> {
         if let Ok(result) = self.std_dict.lookup(word) {
-            return match result {
+            match result {
                 None => {
-                    None
+                    return None;
                 }
                 Some(defs) => {
                     if defs.len() == 0 {
-                        return None;
+                        return return None;
                     }
 
-                    let mut result = String::new();
+                    let result = String::new();
                     for def in &defs[0].segments {
-                        result.push_str(def.text.as_str());
+                        return if let Some(pos) = def.text.find(';') {
+                            let output = &def.text[..pos];
+                            Some(output.into())
+                        } else {
+                            let first_result = def.text.as_str();
+                            Some(first_result.into())
+                        }
                     }
 
-                    Some(result)
+                    return Some(result);
                 }
             };
         } else {
@@ -38,14 +44,14 @@ impl WrapperDict {
     }
 }
 
-// #[cfg(test)]
-// mod tests {
-//     use super::*;
-//
-//     #[test]
-//     fn test_translate() {
-//         let mut dict = WrapperDict::init("/Users/phodal/Downloads/stardict-langdao-ce-gb-2.4.2");
-//         let result = dict.translate("你们");
-//         assert_eq!(result, Some("hello".to_string()));
-//     }
-// }
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_translate() {
+        let mut dict = WrapperDict::init("/Users/phodal/Downloads/stardict-langdao-ce-gb-2.4.2");
+        let result = dict.translate("员工");
+        assert_eq!(result, Some("hello".to_string()));
+    }
+}

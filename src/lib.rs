@@ -1,21 +1,20 @@
 use std::path::PathBuf;
-
 use stardict_lib::{no_cache, StarDict, StarDictStd};
 
-struct WrapperDict {
-    pub stdDict: StarDictStd,
+pub struct WrapperDict {
+    pub std_dict: StarDictStd,
 }
 
 impl WrapperDict {
     pub fn init(path: impl Into<PathBuf>) -> WrapperDict {
         let dict = no_cache(path).unwrap();
         return WrapperDict {
-            stdDict: dict,
+            std_dict: dict,
         };
     }
 
     pub fn translate(&mut self, word: &str) -> Option<String> {
-        if let Ok(result) = self.stdDict.lookup(word) {
+        if let Ok(result) = self.std_dict.lookup(word) {
             return match result {
                 None => {
                     None

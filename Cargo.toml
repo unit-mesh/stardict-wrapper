@@ -1,6 +1,6 @@
 [package]
 name = "stardict_wrapper"
-version = "0.0.4"
+version = "0.0.5"
 edition = "2021"
 description = "Rust implement stardict"
 authors = ["zang.loo"]
@@ -11,7 +11,7 @@ license = "Apache-2.0"
 readme = "README.md"
 
 [dependencies]
-stardict_lib = { version = "0.1.11", features = ["sled"] }
+stardict_lib = { version = "0.2.0" }
 
 [lib]
 name = "stardict_wrapper"
